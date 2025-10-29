@@ -19,12 +19,12 @@ def view_expenses():
 
 def main():
     while True:
-        print("\n=== Simple Expense Tracker ===")
+        print("\n=== Simple Expense Tracker ===\n")
         print("1. Add Expense")
         print("2. View Expenses")
         print("3. Exit")
 
-        choice = input("Choose an option: ")
+        choice = input("\nChoose an option: ")
 
         if choice == "1":
             add_expense()
