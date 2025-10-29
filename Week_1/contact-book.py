@@ -1,75 +1,76 @@
-contacts = {}
+contacts = []  # using a list to store multiple contact dictionaries
 
 
-
-def viewContact():
+def viewContacts():
     if len(contacts) == 0:
-        print('')
-        print("Your contact list is empy")
-        print('')
-        
+        print("\nYour contact list is empty.\n")
     else:
-        print(f'=================')
+        print("\n=================")
         print("YOUR CONTACT LIST")
-        print(f'=================')
-        print('')
-        print(f'Name: {contacts['name']}')
-        print(f'Number: {contacts["number"]}')
-        print(f'Email: {contacts['email']}')
-        print('')
+        print("=================\n")
+        for i, contact in enumerate(contacts, start=1):
+            print(f"{i}. Name: {contact['name']}")
+            print(f"   Number: {contact['number']}")
+            print(f"   Email: {contact['email']}\n")
 
 
 def addContact():
-    print(f'================================') 
-    print('Enter the details you want to add')
-    print(f'================================') 
-    print("Enter Contact's name")
-    contacts["name"] = input('>>>   ')
-    print('')
-    print("Enter Contact's number")
-    contacts["number"] = input('>>>   ')
-    print('')
-    print("Enter Contact's email")
-    contacts["email"] = input('>>>   ')
-    print('')
-    print(contacts)
+    print("\n================================")
+    print("Enter the details you want to add")
+    print("================================\n")
+
+    name = input("Enter contact's name: ")
+    number = input("Enter contact's number: ")
+    email = input("Enter contact's email: ")
+
+    # Creating a contact dictionary and append to list
+    contact = {"name": name, "number": number, "email": email}
+    contacts.append(contact)
+
+    print(f"\nContact for {name} added successfully!\n")
 
 
 def removeContact():
-    print(list(contacts))
-    print(f'====================================')
-    print('Select the contact you want to delete')
-    print(f'====================================') 
-    contactSubstraction = int(input('>>>   '))
-    contacts.pop(contactSubstraction)
-    print('')
+    if len(contacts) == 0:
+        print("\nYour contact list is empty.\n")
+        return
 
+    print("\n========================")
+    print("CONTACTS AVAILABLE")
+    print("========================\n")
+    for i, contact in enumerate(contacts, start=1):
+        print(f"{i}. {contact['name']}")
+
+    try:
+        index = int(input("\nEnter the number of the contact to delete: ")) - 1
+        if 0 <= index < len(contacts):
+            deleted = contacts.pop(index)
+            print(f"\nDeleted contact: {deleted['name']}\n")
+        else:
+            print("\nInvalid selection.\n")
+    except ValueError:
+        print("\nPlease enter a valid number.\n")
 
 
 while True:
-    print(f'============')
-    print(f'CONTACT BOOK')
-    print(f'============')
-    print(f'1. View all contacts')
-    print(f'2. Add a new contact')
-    print(f'3. Remove a contact')
-    print(f'4. Exit the program')
-    print('')
+    print("=============")
+    print("CONTACT BOOK")
+    print("=============")
+    print("1. View all contacts")
+    print("2. Add a new contact")
+    print("3. Remove a contact")
+    print("4. Exit the program\n")
 
-    user_input = input("Select an option:  ")
+    user_input = input("Select an option: ")
+
     if user_input == "1":
-        viewContact()
-
+        viewContacts()
     elif user_input == "2":
         addContact()
-    
     elif user_input == "3":
         removeContact()
-
     elif user_input == "4":
-        exit()
-
+        print("\nGoodbye!")
+        break
     else:
-        print("Invalid input")
-
-
+        print("\nInvalid input. Try again.\n")
