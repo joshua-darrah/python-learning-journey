@@ -26,7 +26,7 @@ print("Squares using map + lambda:", squared_nums)
 even_nums = list(filter(lambda n: n % 2 == 0, numbers))
 print("Evens using filter + lambda:", even_nums)
 
-# --- Using zip ---
+# Using zip
 names = ["Alice", "Bob", "Charlie"]
 ages = [22, 25, 30]
 combined = list(zip(names, ages))
